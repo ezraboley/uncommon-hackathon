@@ -9,7 +9,7 @@ import {EmptyMapShell, GoogleMap} from './GMap.js';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div style={{position: "absolute", height: "100%", width: "100%"}} className="App">
         <ParkNavbar/>
         <EmptyMapShell/>
         <GoogleMap/>
