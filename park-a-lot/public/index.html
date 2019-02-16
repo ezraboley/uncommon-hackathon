@@ -19,8 +19,10 @@
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous"
     />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
+
+
+        <!--
+          Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
 
@@ -43,5 +45,14 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: -34.397, lng: 150.644}, zoom: 8
+            });
+        }
+    </script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDE9HlQqOwe3ZVMu4y4-mRdxZ_m21fn2Vg&callback=initMap"
+    async defer></script>
   </body>
 </html>
