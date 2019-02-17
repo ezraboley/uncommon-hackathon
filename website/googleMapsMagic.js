@@ -14,7 +14,6 @@ function dumpMaps() {
     });
 }
 
-
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), 
         {
@@ -47,9 +46,10 @@ function initMap() {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
+              var marker = new google.maps.Marker({
+                                            map: map,
+                                            position: pos
+                                    });
             infoWindow.open(map);
             map.setCenter(pos);
           }, function() {
@@ -95,6 +95,7 @@ function drawBox(coords) {
         console.log("drawing");
 
 }
+
 
 
 
