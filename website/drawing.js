@@ -1,9 +1,11 @@
+const subBtn = document.getElementById("park-conf-btn");
+
 class ParkDrawManager {
     constructor() {
         this.editMode = false;
         this.polygonOpts = {
-                  fillColor: '#ff0000',
-                  fillOpacity: .3,
+                  fillColor: '#4F4F4F',
+                  fillOpacity: .6,
                   strokeWeight: 5,
                   clickable: true,
                   editable: true,
@@ -36,6 +38,14 @@ class ParkDrawManager {
     }
 
     toggleEditMode() {
+       if (this.editMode) {
+           this.drawingManager.setDrawingMode('polygon');
+           subBtn.style.display = "none";
+       } else {
+           this.drawingManager.setDrawingMode('rectangle');
+           subBtn.style.display = "";
+       }
+
        this.drawingManager.setOptions({drawingControlOptions:
            {   
                position: google.maps.ControlPosition.TOP_CENTER,
@@ -45,3 +55,8 @@ class ParkDrawManager {
         this.editMode = !this.editMode;
     }
 }
+
+subBtn.addEventListener("click", (e) => {
+    drawer.toggleEditMode();
+});
+

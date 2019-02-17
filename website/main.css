@@ -3,3 +3,14 @@
     height: 100%;
     width: 100%;
 }
+
+.park-hidden-btn {
+    display: none;
+}
+
+.park-confirm-btn {
+    position: absolute;
+    top: 16%;
+    left: 52%;
+    z-index: 2;
+}

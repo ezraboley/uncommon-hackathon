@@ -36,7 +36,7 @@ class ParkingLot {
     howManySpotsFree() {
         let numFree = 0;
         this.spots.forEach((spot) => {
-            if (spot.isFree()) 
+            if (spot.isFree) 
                 numFree++;
         });
         return numFree;
@@ -54,6 +54,10 @@ class ParkingLot {
         });
         return false;
     }
+    
+    getSpotById(id) {
+
+    }
 }
 
 
@@ -63,13 +67,13 @@ class ParkingSpot {
         this.corners = corners;
         this.rectangle;
         this.isFree = true;
-        this.STATUS_COLOR = {FREE: "green", FULL: "red"};
+        this.STATUS_COLOR = {FREE: "#00FF00", FULL: "#FF0000"};
         this.id = id;
     }
 
     draw() {
         this.rectangle = new google.maps.Rectangle({
-            paths: corners,
+            paths: this.corners,
             strokeColor: "#000000",
             strokeOpacity: 0.8,
             strokeWeight: 2,

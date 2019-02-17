@@ -14,7 +14,7 @@ function dumpMaps() {
     });
 }
 
-
+var lotIds = 0;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), 
         {
@@ -25,18 +25,34 @@ function initMap() {
 
     drawer = new ParkDrawManager();
     drawer.setVisible();
+    drawer.drawingManager.setDrawingMode("polygon");
     google.maps.event.addListener(drawer.drawingManager, 'polygoncomplete', function(polygon) {
             // This should put us into edit mode
-            
+            let corners = [];
             let paths = polygon.getPath();
-            let lot = {path: polygon.getPath(), corners: []};
             drawer.toggleEditMode();
-            parkingLots.push(lot);
-            
             paths.forEach((point)=> {
-                lot.corners.push(point);
+                corners.push(point);
             });
+            let lot = new ParkingLot(corners, lotIds++); 
+            parkingLots.push(lot);
       });
+     
+    google.maps.event.addListener(drawer.drawingManager, 'rectanglecomplete', (rect) => {
+         let path = rect.getBounds();
+         let corners = [];
+        console.log(path);
+        
+        corners.push(path.getNorthEast());
+        corners.push(path.getSouthWest());
+        parkingLots[parkingLots.length - 1].addSpot(corners);
+        parkingLots[parkingLots.length - 1].
+            spots[parkingLots[parkingLots.length - 1].spots.length - 1].
+            rectangle = rect;
+         parkingLots[parkingLots.length - 1].
+            spots[parkingLots[parkingLots.length - 1].spots.length - 1].
+            free();
+    });
 
     infoWindow = new google.maps.InfoWindow;
 
