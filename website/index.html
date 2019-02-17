@@ -37,39 +37,41 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="start.html">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Find Parking</a>
+        <a class="nav-link" href="#">Contact Us</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           More
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Meet the Founders</a>
           <a class="dropdown-item" href="#">Create an Account</a>
-            <a class="dropdown-item" href="#">Register a Lot</a>
+            <a class="dropdown-item" href="index.html">Register a Lot</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Contact Us</a>
+          <a class="dropdown-item" href="#">Meet the Founders</a>
         </div>
       </li>
-      <li class="nav-item">
+         <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Designed and developed at Uncommon Hacks!</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Enter an address" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Find Lots</button>
-    </form>
-  </div>
+    <div id="top-search">
+      <div class="form-inline my-2 my-lg-0">
+      <input id="find" class="form-control mr-sm-2" type="text" placeholder="Enter an address" aria-label="Search">
+      <button id="btn2" class="btn btn-outline-success my-2 my-sm-0" onclick="fsearch()">Find Lots</button>
+        </div>
+        </div>
+     </div>
 </nav>
    <script src="./googleMapsMagic.js" > </script>
+      <script src="./searchLocations.js" > </script>
    <script src="./parking.js" > </script> 
    <script src="./db.js"> </script> 
    <button id="park-conf-btn" style="display: none" class="btn btn-success park-confirm-btn" onClick="loadLots()">Confirm
    New Lot</button>  
-   <div class="main">
+   <div id="googlemaps" class="main">
         <div style="height: 100%" id='map'> 
         </div>
     </div>
