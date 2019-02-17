@@ -1,6 +1,20 @@
 var map;
 var google;
 
+var parkingLots = [];
+
+function dumpMaps() {
+    console.log(parkingLots);
+    parkingLots.forEach((lot) => {
+        console.log("{corners:[");
+        lot.corners.forEach((corner) => {
+            console.log("{lat: " + corner.lat() + "lng: " + corner.lng() + "},");
+        });
+        console.log("]},");
+    });
+}
+
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 41.7997015, lng: -87.5913876}, zoom: 20, mapTypeId: google.maps.MapTypeId.SATELLITE
@@ -12,8 +26,8 @@ function initMap() {
             drawingControlOptions: {
                       position: google.maps.ControlPosition.TOP_CENTER,
                       drawingModes: ['polygon', 'rectangle']
-                    },
-        polygonOptions: {
+            },
+            polygonOptions: {
                   fillColor: '#ff0000',
                   fillOpacity: .3,
                   strokeWeight: 5,
@@ -21,34 +35,22 @@ function initMap() {
                   editable: true,
                   zIndex: 1
                 },
-        rectangleOptions: {
-            fillOpacity: .7,
-            clickable: true,
-            zIndex:2
-        }
-          });
-    drawingManager.setMap(map);
-      google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
-            let paths = polygon.getPath();
-            paths.forEach((point)=> {
-                console.log(point.lat());
-            });
-      });
-
-      
-    
-    map.addEventListener("click", {
-        
+            rectangleOptions: {
+                fillOpacity: .7,
+                clickable: true,
+                zIndex:2
+            }
     });
-
-    
+    drawingManager.setMap(map);
+    google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
+            let paths = polygon.getPath();
+            let lot = {path: polygon.getPath(), corners: []};
+            parkingLots.push(lot);
+            paths.forEach((point)=> {
+                lot.corners.push(point);
+          });
+    });
 }
-var test = [
-                        {lat: 41.799632, lng:-87.591115},
-                        {lat: 41.799793, lng: -87.591124},
-                        {lat: 41.799790, lng: -87.591670},
-                        {lat: 41.799626, lng: -87.591666}
-                    ];
 
 function drawBox(coords) {
         let poly = new google.maps.Polygon({

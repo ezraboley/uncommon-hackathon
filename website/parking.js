@@ -15,7 +15,7 @@ class ParkingLot {
             paths: this.corners,
             strokeColor: '#FF0000',
             strokeOpacity: 0.6,
-            strokeWeight: 2
+            strokeWeight: 2,
             fillColor: '#FF0000',
             fillOpacity: 0.4
         });
@@ -41,6 +41,19 @@ class ParkingLot {
         });
         return numFree;
     }
+
+    withinRadius(center, radius) {
+        this.corners.forEach((corner) => {
+            let delLat = corner.lat - center.lat;
+            let delLng = corner.lng - center.lng;
+            let radSqr = Math.pow(radius, 2);
+            let distSqr = Math.pow(delLat, 2) + Math.pow(delLng, 2);
+            if (radSqr >= distSqr) {
+                return true;
+            }
+        });
+        return false;
+    }
 }
 
 
@@ -56,7 +69,7 @@ class ParkingSpot {
 
     draw() {
         this.rectangle = new google.maps.Rectangle({
-            paths: corners;
+            paths: corners,
             strokeColor: "#000000",
             strokeOpacity: 0.8,
             strokeWeight: 2,
