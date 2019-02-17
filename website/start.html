@@ -34,13 +34,13 @@
   <body>
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+ <nav class="navbar navbar-expand-lg navbar-light bg-light" style="z-index:1">
   <a class="navbar-brand" href="#">Park-A-Lot</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="z-index:1">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -68,17 +68,26 @@
 </nav>
       <div class="container h-100">
       <div class="d-flex justify-content-center h-100">
-        <div class="searchbar">
-          <input class="search_input" type="text" name="" placeholder="Enter Zipcode">
-          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+        <div class="searchbar" id="form">
+          <input id="locate" class="search_input" type="text" name="" placeholder="Enter Zipcode">
+          <button class="search_icon" onclick="search()"><i class='fas fa-search'></i></button>
         </div>
       </div>
+    </div id="map-back">
+      <div class="main" id="googlemaps">
+        <div style="height: 100%" id='map'> 
+        </div>
     </div>
      <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="./backMap.js" > </script>
+      <script src="./searchLocations.js" > </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <script
+             src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDE9HlQqOwe3ZVMu4y4-mRdxZ_m21fn2Vg&callback=initMap&libraries=drawing"
+    async defer></script>
    
  </body>
 </html>
