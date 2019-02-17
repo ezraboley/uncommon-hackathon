@@ -10,8 +10,10 @@ function dumpMaps() {
         lot.corners.forEach((corner) => {
             console.log("{lat:" + corner.lat() + ",lng:" + corner.lng() + "},");
         });
-        lot.spots.forEach((corner) => {
-            console.log("{lat:" + corner.lat() + ",lng:" + corner.lng() + "},");
+        lot.spots.forEach((spot) => {
+            spot.corners.forEach((corner) => {
+                console.log("{lat:" + corner.lat() + ",lng:" + corner.lng() + "},");
+            });
         });
     });
     console.log("]},");
