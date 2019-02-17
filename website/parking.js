@@ -13,11 +13,10 @@ class ParkingLot {
     draw() {
         this.polygon = new google.maps.Polygon({
             paths: this.corners,
-            strokeColor: '#FF0000',
-            strokeOpacity: 0.6,
-            strokeWeight: 2,
-            fillColor: '#FF0000',
-            fillOpacity: 0.4
+            fillColor: '#4F4F4F',
+            fillOpacity: 0.6,
+            strokeWeight: 5,
+            zIndex: 1
         });
         this.polygon.setMap(map);
         this.spots.forEach((spot) => {
