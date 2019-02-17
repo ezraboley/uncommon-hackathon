@@ -27,6 +27,7 @@ class ParkingLot {
     
     addSpot(corners) {
         this.spots.push(new ParkingSpot(corners, this, this.createSpotId()));
+        return this.spots[this.spots.length - 1];
     }
     
     createSpotId() {
@@ -99,5 +100,9 @@ class ParkingSpot {
             fillColor: this.STATUS_COLOR.FULL
         });
         this.isFree = false;
+    }
+
+    remove() {
+        this.rectangle.setMap(null);
     }
 }
