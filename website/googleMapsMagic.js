@@ -10,9 +10,9 @@ function dumpMaps() {
         lot.corners.forEach((corner) => {
             console.log("{lat:" + corner.lat() + ",lng:" + corner.lng() + "},");
         });
-        console.log(lot.spots);
         console.log("]},");
     });
+    console.log("]},");
 }
 
 var lotIds = 0;
