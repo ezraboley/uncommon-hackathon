@@ -40,10 +40,9 @@ body,html{
     width: 0;
     caret-color:transparent;
     line-height: 40px;
-    transition: width 0.4s linear;
     }
 
-    .searchbar:hover > .search_input{
+    .searchbar > .search_input{
     padding: 0 10px;
     width: 450px;
     caret-color:red;

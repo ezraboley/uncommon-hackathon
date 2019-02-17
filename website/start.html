@@ -64,16 +64,20 @@
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Designed and developed at Uncommon Hacks!</a>
       </li>
     </ul>
+      <form id="top-search" class="form-inline my-2 my-lg-0" style="display:none">
+      <input class="form-control mr-sm-2" type="search" placeholder="Enter an address" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Find Lots</button>
+    </form>
   </div>
 </nav>
       <div class="container h-100">
       <div class="d-flex justify-content-center h-100">
         <div class="searchbar" id="form">
-          <input id="locate" class="search_input" type="text" name="" placeholder="Enter Zipcode">
-          <button class="search_icon" onclick="search()"><i class='fas fa-search'></i></button>
+          <input id="locate" class="search_input" type="text" name="" placeholder="Enter an Address or Zipcode">
+          <button id="btn" class="search_icon" onclick="search()"><i class='fas fa-search'></i></button>
         </div>
       </div>
-    </div id="map-back">
+    </div>
       <div class="main" id="googlemaps">
         <div style="height: 100%" id='map'> 
         </div>
