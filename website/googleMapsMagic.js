@@ -10,6 +10,7 @@ function dumpMaps() {
         lot.corners.forEach((corner) => {
             console.log("{lat:" + corner.lat() + ",lng:" + corner.lng() + "},");
         });
+        console.log(lot.spots);
         console.log("]},");
     });
 }
@@ -82,6 +83,7 @@ function initMap() {
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
+    loadLots();
 }
 
 function enterEditMode(drawingManager) {

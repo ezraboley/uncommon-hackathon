@@ -42,6 +42,14 @@ class ParkingLot {
         });
         return numFree;
     }
+    
+    randomize() {
+        let choices = ["free", "occupy"];
+        this.spots.forEach((spot) => {
+            let ind = Math.floor(Math.random() * choices.length);
+            choices[ind] == "free" ? spot.free() : spot.occupy();
+        });
+    }
 
     withinRadius(center, radius) {
         this.corners.forEach((corner) => {

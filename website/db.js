@@ -19,6 +19,7 @@ function loadLots() {
     db.forEach((entry) => {
         lots.push(new ParkingLot(entry.corners, num++));
         console.log(lots[lots.length - 1]);
+        lots[lots.length - 1].randomize();
         lots[lots.length - 1].draw();
     });
 }
