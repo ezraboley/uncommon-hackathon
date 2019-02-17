@@ -2,13 +2,13 @@ var map;
 var google;
 
 var parkingLots = [];
-
+var drawer;
 function dumpMaps() {
     console.log(parkingLots);
     parkingLots.forEach((lot) => {
         console.log("{corners:[");
         lot.corners.forEach((corner) => {
-            console.log("{lat: " + corner.lat() + "lng: " + corner.lng() + "},");
+            console.log("{lat:" + corner.lat() + ",lng:" + corner.lng() + "},");
         });
         console.log("]},");
     });
@@ -16,37 +16,23 @@ function dumpMaps() {
 
 
 function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), 
+        {
         center: {lat: 41.7997015, lng: -87.5913876}, zoom: 20, mapTypeId: google.maps.MapTypeId.SATELLITE
         });
 
+    //disableMap();
 
-    var drawingManager = new google.maps.drawing.DrawingManager({
-            drawingMode: google.maps.drawing.OverlayType.MARKER,
-            drawingControl: true,
-            drawingControlOptions: {
-                      position: google.maps.ControlPosition.TOP_CENTER,
-                      drawingModes: ['polygon', 'rectangle']
-            },
-            polygonOptions: {
-                  fillColor: '#ff0000',
-                  fillOpacity: .3,
-                  strokeWeight: 5,
-                  clickable: true,
-                  editable: true,
-                  zIndex: 1
-                },
-            rectangleOptions: {
-                fillOpacity: .7,
-                clickable: true,
-                zIndex:2
-            }
-    });
-    drawingManager.setMap(map);
-    google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
+    drawer = new ParkDrawManager();
+    drawer.setVisible();
+    google.maps.event.addListener(drawer.drawingManager, 'polygoncomplete', function(polygon) {
+            // This should put us into edit mode
+            
             let paths = polygon.getPath();
             let lot = {path: polygon.getPath(), corners: []};
+            drawer.toggleEditMode();
             parkingLots.push(lot);
+            
             paths.forEach((point)=> {
                 lot.corners.push(point);
             });
@@ -73,6 +59,22 @@ function initMap() {
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
+}
+
+function enterEditMode(drawingManager) {
+    
+}
+
+function exitEditMode() {
+
+}
+
+function disableMap() {
+    map.setOptions(
+        {gestureHandling: "none", 
+                    opacity: .3
+    });
+    console.log('called');
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
