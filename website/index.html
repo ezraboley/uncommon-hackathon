@@ -12,7 +12,7 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    
+    <link rel="stylesheet" type="text/css" href="main.css" /> 
         <!--
           Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -27,9 +27,13 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <script src="./googleMapsMagic.js" > </script>
-    <div style="height: 100%" id='map'> 
-            </div>
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDE9HlQqOwe3ZVMu4y4-mRdxZ_m21fn2Vg&callback=initMap"
+    <button onClick="drawBox()">Press me to make a rect</button>
+    <div class="main">
+        <div style="height: 100%" id='map'> 
+        </div>
+    </div>
+    <script
+             src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDE9HlQqOwe3ZVMu4y4-mRdxZ_m21fn2Vg&callback=initMap&libraries=drawing"
     async defer></script>
  </body>
 </html>
