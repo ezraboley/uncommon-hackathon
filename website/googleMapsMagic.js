@@ -48,13 +48,19 @@ function initMap() {
         
         corners.push(path.getNorthEast());
         corners.push(path.getSouthWest());
-        parkingLots[parkingLots.length - 1].addSpot(corners);
+        let spot = parkingLots[parkingLots.length - 1].addSpot(corners);
         parkingLots[parkingLots.length - 1].
             spots[parkingLots[parkingLots.length - 1].spots.length - 1].
             rectangle = rect;
-         parkingLots[parkingLots.length - 1].
+        parkingLots[parkingLots.length - 1].
             spots[parkingLots[parkingLots.length - 1].spots.length - 1].
             free();
+        parkingLots[parkingLots.length - 1].
+            spots[parkingLots[parkingLots.length - 1].spots.length - 1].
+            rectangle.addListener("click", (e) => {
+                spot.remove();
+            });
+
     });
 
     infoWindow = new google.maps.InfoWindow;
