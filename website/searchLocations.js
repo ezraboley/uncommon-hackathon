@@ -1,6 +1,7 @@
 // Get the input field
 var marker;
 var input1 = document.getElementById("locate");
+var input2 = document.getElementById("find");
 // Execute a function when the user releases a key on the keyboard
 input1.addEventListener("keyup", function(event) {
   // Number 13 is the "Enter" key on the keyboard
@@ -12,10 +13,6 @@ input1.addEventListener("keyup", function(event) {
   }
 }); 
 
-// Get the input field
-var input2 = document.getElementById("find");
-
-// Execute a function when the user releases a key on the keyboard
 input2.addEventListener("keyup", function(event) {
   // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode === 13) {
