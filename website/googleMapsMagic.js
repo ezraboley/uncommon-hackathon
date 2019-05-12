@@ -1,7 +1,7 @@
+const confirmButton = document.getElementById('park-conf-btn');
 var map;
 var google;
-
-var parkingLots = [];
+var parkingLots = JSON.parse(localStorage.getItem('lot')) || [];
 var drawer;
 function dumpMaps() {
     console.log(parkingLots);
@@ -17,16 +17,25 @@ function dumpMaps() {
         });
     });
     console.log("]},");
+    
+    /*parkingLots.forEach((entry) => {
+        let newLot = [];
+        entry.corners.forEach((corner) => {
+        newLot.push({lat : corner.lat(), lng : corner.lng()});
+            tempLot.push(newLot);
+            localStorage.setItem('lot', JSON.stringify(tempLot));
+        });
+    });*/
 }
 
-var lotIds = 0;
+
+var lotIds = localStorage.getItem('ids') || 0;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'),
         {
         center: {lat: 41.7997015, lng: -87.5913876}, zoom: 20, mapTypeId: google.maps.MapTypeId.SATELLITE
         });
 
-    //disableMap();
 
     drawer = new ParkDrawManager();
     drawer.setVisible();
@@ -39,10 +48,16 @@ function initMap() {
             paths.forEach((point)=> {
                 corners.push(point);
             });
-            let lot = new ParkingLot(corners, lotIds++);
+       confirmButton.addEventListener("click", () => {
+            let lot = new ParkingLot(corners, localStorage.getItem('ids'));
+            lotIds++;
+            localStorage.setItem('ids', lotIds);
             parkingLots.push(lot);
+            localStorage.setItem('lot', JSON.stringify(parkingLots));
+       });
+            //dumpMaps();
       });
-
+    
     google.maps.event.addListener(drawer.drawingManager, 'rectanglecomplete', (rect) => {
          let path = rect.getBounds();
          let corners = [];

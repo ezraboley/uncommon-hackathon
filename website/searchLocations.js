@@ -1,6 +1,6 @@
 // Get the input field
 var marker;
-var input1 = document.getElementById("locate");
+/*var input1 = document.getElementById("locate");
 var input2 = document.getElementById("find");
 // Execute a function when the user releases a key on the keyboard
 input1.addEventListener("keyup", (event) => {
@@ -21,7 +21,7 @@ input2.addEventListener("keyup", function(event) {
     // Trigger the button element with a click
     document.getElementById("btn2").click();
   }
-});
+}); */
 
 function search() {
     var location = document.getElementById("locate").value;

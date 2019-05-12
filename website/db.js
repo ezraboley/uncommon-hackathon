@@ -1,11 +1,13 @@
 //import {ParkingLot, ParkingSpot} from './parking.js';
 
-var db = [{corners:[
+var db = [];
+var  lots = [];
+          /* {corners:[
         {lat:41.799809330539304,lng:-87.59170678287279},
 {lat:41.799810744419396,lng:-87.5911327901436},
 {lat:41.799621284211696,lng:-87.5911327901436},
-{lat:41.799619870327454,lng:-87.59170678287279}]}];
-          /* spots:[
+{lat:41.799619870327454,lng:-87.59170678287279}]} 
+spots:[
 {lat:41.79980508889891,lng:-87.59164106875193},
 {lat:41.7997570169547,lng:-87.59167057305109},
 {lat:41.79980650277907,lng:-87.59160754113924},
@@ -53,12 +55,14 @@ var db = [{corners:[
 ]}];*/
 
 function loadLots() {
-    let lots = [];
+    //dumpMaps();
+    db = JSON.parse(localStorage.getItem('lot')) || [];
     let num = 0;
     db.forEach((entry) => {
+        console.log(entry);
         lots.push(new ParkingLot(entry.corners, num++));
-        console.log(lots[lots.length - 1]);
         lots[lots.length - 1].randomize();
         lots[lots.length - 1].draw();
     });
+    console.log(lots);
 }
